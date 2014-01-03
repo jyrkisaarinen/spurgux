@@ -20,5 +20,4 @@ public class SpurguXservlet extends HttpServlet
     canvas.render(outputStream);
     outputStream.close();
 	}
-	
 }
