@@ -58,6 +58,7 @@ public class Canvas
                                                     this.height * this.fontSize, 
                                                     BufferedImage.TYPE_BYTE_BINARY);
     Graphics2D graphics2d = bufferedImage.createGraphics();
+    graphics2d.setColor(Color.YELLOW);
     graphics2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN , this.fontSize));
     graphics2d.drawChars(this.canvas, 0, this.canvas.length, 0, 0);
     bufferedImage.flush();
