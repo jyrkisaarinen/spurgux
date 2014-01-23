@@ -20,6 +20,7 @@ public class Canvas
     if (width <= 0 || height <= 0 || fontSize <= 0)
     {
       throw new IllegalArgumentException();
+//test
     }
     this.width = width;
     this.height = height;
