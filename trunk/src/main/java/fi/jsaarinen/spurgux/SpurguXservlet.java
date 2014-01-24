@@ -20,4 +20,10 @@ public class SpurguXservlet extends HttpServlet
     canvas.render(outputStream);
     outputStream.close();
 	}
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException
+  {
+  }  
 }
