@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SpurguXservlet extends HttpServlet
 {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+			throws ServletException, IOException 
+  {
     Canvas canvas = new Canvas(10, 10, 16);
     canvas.render("testi", 0, 0);
     resp.setContentType(canvas.getMIMEType());
