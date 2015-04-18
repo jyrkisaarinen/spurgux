@@ -48,6 +48,16 @@ public class Canvas
                      stringData.length);
   }
   
+  public void renderMessage()
+  {
+    char[] stringData = this.message.toCharArray();
+    System.arraycopy(stringData, 
+                     0, 
+                     this.canvas, 
+                     0, 
+                     stringData.length);
+  }
+  
   public String getMIMEType()
   {
     return "image/png";
