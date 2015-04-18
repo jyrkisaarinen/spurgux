@@ -14,13 +14,13 @@ public class Canvas
   private int width, height;
   private int fontSize;
   private char[] canvas;
+  private String message;
   
   public Canvas(int width, int height, int fontSize)
   {
     if (width <= 0 || height <= 0 || fontSize <= 0)
     {
       throw new IllegalArgumentException();
-//test
     }
     this.width = width;
     this.height = height;
@@ -64,5 +64,10 @@ public class Canvas
     graphics2d.drawChars(this.canvas, 0, this.canvas.length, 0, 0);
     bufferedImage.flush();
     ImageIO.write(bufferedImage, "PNG", outputStream);
+  }
+
+  public void setMessage(String message)
+  {
+    this.message = message;
   }
 }
