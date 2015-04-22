@@ -6,15 +6,21 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
+
+import fi.jsaarinen.spurgux.hahmot.Hahmo;
+import fi.jsaarinen.spurgux.rakennukset.Rakennus;
 
 public class Canvas
 {
   private int width, height;
   private int fontSize;
   private char[] canvas;
-  private String message;
+  private List<Rakennus> buildings;
+  private List<Hahmo> characters;
   
   public Canvas(int width, int height, int fontSize)
   {
@@ -30,7 +36,19 @@ public class Canvas
   
   public void reset()
   {
-    this.canvas = new char[width * height];
+    this.canvas = new char[this.width * this.height];
+    this.buildings = new LinkedList<Rakennus>();
+    this.characters = new LinkedList<Hahmo>();
+  }
+  
+  public void addBuilding(Rakennus rakennus)
+  {
+    this.buildings.add(rakennus);
+  }
+  
+  public void addCharacter(Hahmo hahmo)
+  {
+    this.characters.add(hahmo);
   }
   
   public void render(char c, int x, int y)
@@ -48,9 +66,9 @@ public class Canvas
                      stringData.length);
   }
   
-  public void renderMessage()
+  public void renderFeedbackLine(String message)
   {
-    char[] stringData = this.message.toCharArray();
+    char[] stringData = message.toCharArray();
     System.arraycopy(stringData, 
                      0, 
                      this.canvas, 
@@ -70,14 +88,9 @@ public class Canvas
                                                     BufferedImage.TYPE_BYTE_BINARY);
     Graphics2D graphics2d = bufferedImage.createGraphics();
     graphics2d.setColor(Color.YELLOW);
-    graphics2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN , this.fontSize));
-    graphics2d.drawChars(this.canvas, 0, this.canvas.length, 0, 0);
+    graphics2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, this.fontSize));
+    graphics2d.drawChars(this.canvas, 0, this.canvas.length, 0, bufferedImage.getHeight());
     bufferedImage.flush();
     ImageIO.write(bufferedImage, "PNG", outputStream);
-  }
-
-  public void setMessage(String message)
-  {
-    this.message = message;
   }
 }

@@ -1,5 +1,7 @@
 package fi.jsaarinen.spurgux.rakennukset;
 
+import java.awt.Rectangle;
+
 import fi.jsaarinen.spurgux.Canvas;
 
 public abstract class AbstractRakennus
@@ -77,17 +79,20 @@ public abstract class AbstractRakennus
     this.name = name;
   }
   
+  public Rectangle getRectangle()
+  {
+    Rectangle rectangle = new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+    return rectangle;
+  }
+  
   public void render(Canvas canvas)
   {
-    int x1 = this.getX();
-    int y1 = this.getY();
-    int x2 = x1 + this.getWidth();
-    int y2 = y1 + this.getHeight();
-    
     for (int i = 0; i < this.getHeight(); i++)
     {      
       String row = this.getMap()[i];
-      canvas.render(row, this.getX(), i * ALKO_WIDTH);
+      canvas.render(row, this.getX(), i + this.getY());
     }
   }
+  
+  public abstract String[] getMap();
 }
