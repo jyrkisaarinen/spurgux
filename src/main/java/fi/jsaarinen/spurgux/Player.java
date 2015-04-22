@@ -6,7 +6,8 @@ public class Player
   private double money;
   private int points;
   private int xpos, ypos;
-    
+  private boolean onTrip;
+  
   public Player(double ethanolLevel, double money, int points, int xpos, int ypos)
   {
     super();
@@ -15,7 +16,9 @@ public class Player
     this.points = points;
     this.xpos = xpos;
     this.ypos = ypos;
+    this.onTrip = false;
   }
+  
   public double getEthanolLevel()
   {
     return this.ethanolLevel;
@@ -64,5 +67,15 @@ public class Player
   public void setYpos(int ypos)
   {
     this.ypos = ypos;
+  }
+
+  public boolean isOnTrip()
+  {
+    return this.onTrip;
+  }
+
+  public void setOnTrip(boolean onTrip)
+  {
+    this.onTrip = onTrip;
   }  
 }

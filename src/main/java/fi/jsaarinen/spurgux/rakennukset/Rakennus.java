@@ -5,5 +5,6 @@ import fi.jsaarinen.spurgux.Player;
 
 public interface Rakennus
 {
+  void render(Canvas canvas);
   void visit(Player player, Canvas canvas);
 }

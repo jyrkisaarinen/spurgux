@@ -4,18 +4,22 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class HighScoreService
 {
   private String dbURL;
   private String dbUsername;
   private String dbPassword;
+  private MysqlConnectionPoolDataSource dataSource;
   
   public HighScoreService(String dbURL, String dbUsername, String dbPassword) throws SQLException
   {
@@ -23,6 +27,10 @@ public class HighScoreService
     this.dbURL = dbURL;
     this.dbUsername = dbUsername;
     this.dbPassword = dbPassword;    
+    this.dataSource = new MysqlConnectionPoolDataSource();
+    this.dataSource.setUser(dbUsername);
+    this.dataSource.setPassword(dbPassword);
+    this.dataSource.setURL(dbURL);
   } 
   
   public void addHighScore(String player, int score) throws SQLException
@@ -31,10 +39,11 @@ public class HighScoreService
     java.sql.PreparedStatement preparedStatement = null;
     try
     {
-      connection = DriverManager.getConnection(this.dbURL,this.dbUsername, this.dbPassword);
-      preparedStatement = connection.prepareStatement("INSERT INTO highscore (player, highscore) VALUES (" 
-                          + player + ", " 
-                          + score + ")");
+      connection = this.dataSource.getConnection();
+      preparedStatement = connection.prepareStatement("INSERT INTO highscore (player, score) VALUES ('"
+                          + player + "', " 
+                          + score + ");");
+      System.out.println(preparedStatement.toString());
       int n = preparedStatement.executeUpdate();
       if (n != 1)
       {
@@ -64,10 +73,17 @@ public class HighScoreService
     java.sql.PreparedStatement preparedStatement = null;
     try
     {
-      connection = DriverManager.getConnection(this.dbURL,this.dbUsername, this.dbPassword);
-      preparedStatement = connection.prepareStatement("SELECT * FROM highscore LIMIT 0," + limit + " ORDER BY highscore;");
+      connection = DriverManager.getConnection(this.dbURL, this.dbUsername, this.dbPassword);
+      preparedStatement = connection.prepareStatement("SELECT * FROM highscore LIMIT 0," + limit + ";");
       ResultSet resultSet = preparedStatement.executeQuery();
-      List<HighScoreEntry> scores = new LinkedList<HighScoreEntry>();      
+      System.out.println(resultSet.toString());
+      List<HighScoreEntry> scores = new ArrayList<HighScoreEntry>();      
+      HighScoreEntry[] highScoreEntries = new HighScoreEntry[scores.size()];
+      for (int i = 0; i< scores.size(); i++)
+      {
+        highScoreEntries[i] = scores.get(i);
+      }
+      return highScoreEntries;
     }
     finally
     {
@@ -80,12 +96,19 @@ public class HighScoreService
         connection.close();
       }
     }    
-    return null;
   }
   
   public static void main(String[] args) throws SQLException
   {
     HighScoreService highScore = new HighScoreService("jdbc:mysql://localhost:3306/spurgux", "root", "root");
     highScore.addHighScore("jorma", 2);
+    highScore.addHighScore("aku", 1);
+    highScore.addHighScore("kalle", 4);
+    highScore.addHighScore("jallu", 10);
+    HighScoreEntry[] hse = highScore.getHighScoreEntries(10);
+    for (int i = 0; i < hse.length; i++)
+    {
+      System.out.println(hse[i]);
+    }
   }
 }
