@@ -70,12 +70,13 @@ public class HighScoreService
       throw new IllegalArgumentException();
     }
     Connection connection = null;
-    java.sql.PreparedStatement preparedStatement = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
     try
     {
       connection = DriverManager.getConnection(this.dbURL, this.dbUsername, this.dbPassword);
-      preparedStatement = connection.prepareStatement("SELECT * FROM highscore LIMIT 0," + limit + ";");
-      ResultSet resultSet = preparedStatement.executeQuery();
+      preparedStatement = (PreparedStatement) connection.prepareStatement("SELECT * FROM highscore LIMIT 0," + limit + ";");
+      resultSet = preparedStatement.executeQuery();
       System.out.println(resultSet.toString());
       List<HighScoreEntry> scores = new ArrayList<HighScoreEntry>();      
       HighScoreEntry[] highScoreEntries = new HighScoreEntry[scores.size()];
@@ -87,6 +88,10 @@ public class HighScoreService
     }
     finally
     {
+      if (resultSet != null)
+      {
+        resultSet.close();
+      }
       if (preparedStatement != null)
       {
         preparedStatement.close();
