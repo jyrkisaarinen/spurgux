@@ -17,8 +17,8 @@ public class SpurguXservlet extends HttpServlet
 			throws ServletException, IOException 
   {
     Canvas canvas = new Canvas(60, 40, 16);
-    canvas.render("testi", 0, 0);
-    canvas.render((char) 0x30, 10, 10);
+    //canvas.render("testi", 0, 20);
+    //canvas.render((char) 0x30, 10, 10);
     canvas.renderFeedbackLine("testi");
     Alko alko = new Alko();
     alko.setX(0);
