@@ -58,12 +58,11 @@ public class Player extends Hahmo
     this.onTrip = onTrip;
   }
 
-  @Override
   public void visit(Canvas canvas, Player player)
   {   
+    throw new IllegalStateException("Player can't visit itself!");
   }
 
-  @Override
   public char getFigure()
   {
     return '@';

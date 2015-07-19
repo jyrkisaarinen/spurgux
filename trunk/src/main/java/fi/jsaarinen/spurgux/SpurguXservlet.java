@@ -19,7 +19,7 @@ public class SpurguXservlet extends HttpServlet
     Canvas canvas = new Canvas(60, 40, 16);
     //canvas.render("testi", 0, 20);
     //canvas.render((char) 0x30, 10, 10);
-    canvas.renderFeedbackLine("testi");
+    canvas.renderFeedbackLine("testi jee");
     Alko alko = new Alko();
     alko.setX(0);
     alko.setY(0);
@@ -28,7 +28,7 @@ public class SpurguXservlet extends HttpServlet
     OutputStream outputStream = resp.getOutputStream();
     canvas.render(outputStream);
     outputStream.close();
-	}
+  }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
