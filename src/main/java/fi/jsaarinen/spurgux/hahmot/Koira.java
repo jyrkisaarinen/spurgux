@@ -10,13 +10,11 @@ public class Koira extends Hahmo
     super(x, y);
   }
 
-  @Override
   public void visit(Canvas canvas, Player player)
   {
     canvas.renderFeedbackLine("Potkaiset koiraa.");
   }
 
-  @Override
   public char getFigure()
   {
     return 'D';

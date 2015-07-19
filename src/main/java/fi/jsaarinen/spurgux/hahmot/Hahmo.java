@@ -6,15 +6,17 @@ import fi.jsaarinen.spurgux.Player;
 public abstract class Hahmo
 {
   private int x, y;
-  public abstract void visit(Canvas canvas, Player player);
-  public abstract char getFigure();
-  
+  //public abstract void visit(Canvas canvas, Player player);
+  //public abstract char getFigure();
+  //public abstract boolean canBeSteppedOver();
+
   public Hahmo(int x, int y)
   {
     super();
     this.x = x;
     this.y = y;
   }
+  
   public int getX()
   {
     return this.x;
