@@ -1,8 +1,5 @@
 package fi.jsaarinen.spurgux.hahmot;
 
-import fi.jsaarinen.spurgux.Canvas;
-import fi.jsaarinen.spurgux.Player;
-
 public abstract class Hahmo
 {
   private int x, y;
