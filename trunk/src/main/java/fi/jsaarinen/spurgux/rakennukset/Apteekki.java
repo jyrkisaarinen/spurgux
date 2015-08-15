@@ -6,13 +6,13 @@ import fi.jsaarinen.spurgux.Player;
 public class Apteekki
 {
   private String[] map =
-    {
-      "############",
-      "# APTEEKKI #",
-      "#          #",
-      "#          #",
-      "############"    
-    };
+  {
+    "############",
+    "# APTEEKKI #",
+    "#          #",
+    "#          #",
+    "############"    
+  };
     
   public void visit(Player player, Canvas canvas)
   {
