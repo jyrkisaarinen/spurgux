@@ -7,17 +7,15 @@ public class Alko extends AbstractRakennus implements Rakennus
 {
   private String[] map =
   {
-    "#######",
-    "#     #",
-    "# ALKO#",
-    "#     #",
-    "#######"    
+    "########",
+    "#      #",
+    "# ALKO #",
+    "#      #",
+    "########"    
   };
   
   private static final double LONKERO_PRICE = 3;
   private static final double BEER_PRICE = 2;
-  private static final int ALKO_WIDTH = 7;
-  private static final int ALKO_HEIGHT = 5;
   
   public void visit(Player player, Canvas canvas)
   {
@@ -43,6 +41,10 @@ public class Alko extends AbstractRakennus implements Rakennus
         double money = player.getMoney();
         money -= BEER_PRICE;
         player.setMoney(money);
+      }
+      else
+      {
+        canvas.renderFeedbackLine("Sinulla ei ole fyrkkaa juotavaan.");
       }
     }
   }
