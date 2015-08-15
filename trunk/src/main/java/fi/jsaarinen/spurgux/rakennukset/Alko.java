@@ -44,7 +44,7 @@ public class Alko extends AbstractRakennus implements Rakennus
       }
       else
       {
-        canvas.renderFeedbackLine("Sinulla ei ole fyrkkaa juotavaan.");
+        canvas.renderFeedbackLine("Sinulla ei ole fyrkkaa virvokkeisiin.");
       }
     }
   }
