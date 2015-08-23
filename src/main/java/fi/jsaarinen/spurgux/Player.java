@@ -7,6 +7,8 @@ public class Player extends Hahmo
   private double ethanolLevel;
   private double money;
   private int points;
+  private int wellBeing;
+  
   private boolean onTrip;
   
   public Player(double ethanolLevel, double money, int points, int xpos, int ypos)
@@ -18,6 +20,16 @@ public class Player extends Hahmo
     this.onTrip = false;
   }
   
+  public int getWellBeing()
+  {
+    return this.wellBeing;
+  }
+
+  public void setWellBeing(int wellBeing)
+  {
+    this.wellBeing = wellBeing;
+  }
+
   public double getEthanolLevel()
   {
     return this.ethanolLevel;
@@ -60,7 +72,7 @@ public class Player extends Hahmo
 
   public void visit(Canvas canvas, Player player)
   {   
-    throw new IllegalStateException("Player can't visit itself!");
+    throw new IllegalArgumentException("Player can't visit itself!");
   }
 
   public char getFigure()
