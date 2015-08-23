@@ -78,5 +78,53 @@ public class Player extends Hahmo
   public char getFigure()
   {
     return '@';
+  }
+
+  public void step(int keyCode)
+  {
+    switch ((char)keyCode)
+    {
+      case '1':
+        x--;
+        y++;
+        break;
+        
+      case '2':
+        y++;
+        break;
+        
+      case '3':
+        x++;
+        y++;
+        break;
+        
+      case '4':      
+        x--;
+        break;
+        
+      case '5':
+        break;
+        
+      case '6':
+        x++;
+        break;
+        
+      case '7':
+        x--;
+        y--;
+        break;
+        
+      case '8':
+        y--;
+        break;
+        
+      case '9':
+        x++;
+        y++;
+        break;
+        
+      default:
+        break;
+    }
   }  
 }
