@@ -2,7 +2,7 @@ package fi.jsaarinen.spurgux.hahmot;
 
 public abstract class Hahmo
 {
-  private int x, y;
+  protected int x, y;
   //public abstract void visit(Canvas canvas, Player player);
   //public abstract char getFigure();
   //public abstract boolean canBeSteppedOver();

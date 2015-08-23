@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fi.jsaarinen.spurgux.rakennukset.Alko;
 
@@ -47,11 +48,23 @@ public class SpurguXservlet extends HttpServlet
     if (mode.equals("img"))
     {
       long t1 = System.currentTimeMillis();
-      Canvas canvas = new Canvas(60, 40, 16);
-      canvas.render("testi", 0, 20);
-      canvas.render((char) 0x30, 10, 10);
-      System.out.println(req.getParameter("key"));
+
+      Context context;
+      HttpSession httpSession = req.getSession(false);
+      if (httpSession == null)
+      {
+        httpSession = req.getSession(true);
+        Canvas canvas = new Canvas(60, 40, 16);
+        Player player = new Player(1.0, 10, 0, 10, 20);
+        context = new Context(canvas, player);
+        httpSession.setAttribute("CONTEXT", context);
+      }
+      context = (Context)httpSession.getAttribute("CONTEXT");
+      Canvas canvas = context.getCanvas();
+      Player player = context.getPlayer();
       int keyCode = Integer.parseInt(req.getParameter("key"));
+      player.step(keyCode);
+      canvas.render(player.getFigure(), player.getX(), player.getY());
       canvas.renderFeedbackLine("testi jee " + keyCode);
       Alko alko = new Alko();
       alko.setX(10);
