@@ -7,7 +7,7 @@ public class Alko extends AbstractRakennus implements Rakennus
 {
   private String[] map =
   {
-    "########",
+    "###**###",
     "#      #",
     "# ALKO #",
     "#      #",
