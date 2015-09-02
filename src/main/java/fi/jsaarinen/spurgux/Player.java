@@ -128,7 +128,8 @@ public class Player extends Hahmo
       default:
         break;
     }
-    if (canvas.canBeSteppedOver(x, y))
+    
+    if (canvas.canBeSteppedOver(this, x, y))
     {
       this.setX(x);
       this.setY(y);
@@ -136,7 +137,7 @@ public class Player extends Hahmo
   }
 
   @Override
-  public boolean canBeSteppedOver(int x, int y)
+  public boolean canBeSteppedOver(Player player, int x, int y)
   {
     throw new IllegalStateException("Player can't step over him/herself");
   }

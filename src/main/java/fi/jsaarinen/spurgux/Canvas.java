@@ -115,26 +115,29 @@ public class Canvas implements Steppable
     ImageIO.write(bufferedImage, "PNG", outputStream);
   }
 
-  public boolean canBeSteppedOver(int x, int y)
+  public boolean canBeSteppedOver(Player player, int x, int y)
   {
     for (AbstractRakennus r : this.buildings)
     {
-      if (r.canBeSteppedOver(x, y))
+      if (r.canBeSteppedOver(null, x, y))
       {
+        r.visit(player, this);
         return true;
       }
     }
     for (Hahmo h : this.characters)
     {
-      if (h.canBeSteppedOver(x, y))
+      if (h.canBeSteppedOver(null, x, y))
       {
+        h.visit(player, this);
         return true;
       }
     }
     for (Esine e : this.items)
     {
-      if (e.canBeSteppedOver(x, y))
+      if (e.canBeSteppedOver(null, x, y))
       {
+        e.visit(player, this);
         return true;
       }
     }
