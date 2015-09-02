@@ -62,7 +62,12 @@ public class SpurguXservlet extends HttpServlet
       context = (Context)httpSession.getAttribute("CONTEXT");
       Canvas canvas = context.getCanvas();
       Player player = context.getPlayer();
-      int keyCode = Integer.parseInt(req.getParameter("key"));
+      String key = req.getParameter("key");
+      if (key == null)
+      {
+        throw new ServletException("no key parameter given");
+      }
+      int keyCode = Integer.parseInt(key);
       player.step(keyCode, canvas);
       player.render(canvas);
       canvas.renderStatusLine("testi jee " + keyCode);
