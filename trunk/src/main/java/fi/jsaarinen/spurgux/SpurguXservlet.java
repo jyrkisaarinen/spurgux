@@ -63,10 +63,7 @@ public class SpurguXservlet extends HttpServlet
       Canvas canvas = context.getCanvas();
       Player player = context.getPlayer();
       int keyCode = Integer.parseInt(req.getParameter("key"));
-      if (player.canBeSteppedOver(player.getX(), player.getY()))
-      {
-        player.step(keyCode, canvas);
-      }
+      player.step(keyCode, canvas);
       player.render(canvas);
       canvas.renderStatusLine("testi jee " + keyCode);
       Alko alko = new Alko();
