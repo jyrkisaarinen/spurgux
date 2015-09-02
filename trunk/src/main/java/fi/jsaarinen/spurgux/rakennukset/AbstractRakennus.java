@@ -3,6 +3,7 @@ package fi.jsaarinen.spurgux.rakennukset;
 import java.awt.Rectangle;
 
 import fi.jsaarinen.spurgux.Canvas;
+import fi.jsaarinen.spurgux.Player;
 import fi.jsaarinen.spurgux.Renderable;
 import fi.jsaarinen.spurgux.Steppable;
 import fi.jsaarinen.spurgux.Visitable;
@@ -98,7 +99,7 @@ public abstract class AbstractRakennus implements Renderable, Steppable, Visitab
   }
   
   @Override
-  public boolean canBeSteppedOver(int x, int y)
+  public boolean canBeSteppedOver(Player player, int x, int y)
   {
     return this.getMap()[y].codePointAt(x) == '*';
   } 

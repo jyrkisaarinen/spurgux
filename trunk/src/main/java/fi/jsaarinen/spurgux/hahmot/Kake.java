@@ -16,7 +16,7 @@ public class Kake extends Hahmo
   }
 
   @Override
-  public boolean canBeSteppedOver(int x, int y)
+  public boolean canBeSteppedOver(Player player, int x, int y)
   {
     return false;
   }
