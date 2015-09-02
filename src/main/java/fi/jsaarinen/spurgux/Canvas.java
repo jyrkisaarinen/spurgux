@@ -11,16 +11,18 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import fi.jsaarinen.spurgux.esineet.Esine;
 import fi.jsaarinen.spurgux.hahmot.Hahmo;
-import fi.jsaarinen.spurgux.rakennukset.Rakennus;
+import fi.jsaarinen.spurgux.rakennukset.AbstractRakennus;
 
-public class Canvas
+public class Canvas implements Steppable
 {
   private int width, height;
   private int fontSize;
   private char[] canvas;
-  private List<Rakennus> buildings;
+  private List<AbstractRakennus> buildings;
   private List<Hahmo> characters;
+  private List<Esine> items;
   
   public Canvas(int width, int height, int fontSize)
   {
@@ -37,11 +39,12 @@ public class Canvas
   public void reset()
   {
     this.canvas = new char[this.width * this.height];
-    this.buildings = new LinkedList<Rakennus>();
+    this.buildings = new LinkedList<AbstractRakennus>();
     this.characters = new LinkedList<Hahmo>();
+    this.items = new LinkedList<Esine>();
   }
   
-  public void addBuilding(Rakennus rakennus)
+  public void addBuilding(AbstractRakennus rakennus)
   {
     this.buildings.add(rakennus);
   }
@@ -58,6 +61,24 @@ public class Canvas
   
   public void render(String data, int x, int y)
   {
+    if (x < 0)
+    {
+      throw new IllegalArgumentException("x < 0");
+    }
+    if (x >= this.width)
+    {
+      throw new IllegalArgumentException("x >= width");
+    }
+    
+    if (y < 0)
+    {
+      throw new IllegalArgumentException("y < 0");
+    }
+    if (y >= this.height)
+    {
+      throw new IllegalArgumentException("y >= height");
+    }
+    
     char[] stringData = data.toCharArray();
     System.arraycopy(stringData, 
                      0, 
@@ -66,7 +87,7 @@ public class Canvas
                      stringData.length);
   }
   
-  public void renderFeedbackLine(String message)
+  public void renderStatusLine(String message)
   {
     char[] stringData = message.toCharArray();
     System.arraycopy(stringData, 
@@ -92,5 +113,49 @@ public class Canvas
     graphics2d.drawChars(this.canvas, 0, this.canvas.length, 0, bufferedImage.getHeight());
     bufferedImage.flush();
     ImageIO.write(bufferedImage, "PNG", outputStream);
+  }
+
+  public boolean canBeSteppedOver(int x, int y)
+  {
+    for (AbstractRakennus r : this.buildings)
+    {
+      if (r.canBeSteppedOver(x, y))
+      {
+        return true;
+      }
+    }
+    for (Hahmo h : this.characters)
+    {
+      if (h.canBeSteppedOver(x, y))
+      {
+        return true;
+      }
+    }
+    for (Esine e : this.items)
+    {
+      if (e.canBeSteppedOver(x, y))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void removeCharacter(Hahmo hahmo)
+  {    
+    boolean removed = this.characters.remove(hahmo);
+    if (!removed)
+    {
+      throw new IllegalArgumentException("Characters is not in canvas!");
+    }
+  }
+
+  public void removeObject(Esine item)
+  {    
+    boolean removed = this.items.remove(item);
+    if (!removed)
+    {
+      throw new IllegalArgumentException("Item is not in canvas!");
+    }
   }
 }

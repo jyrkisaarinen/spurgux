@@ -36,7 +36,7 @@ public class HighScoreService
     try
     {
       connection = this.dataSource.getConnection();
-      preparedStatement = connection.prepareStatement("INSERT INTO highscore (player, score) VALUES ('"
+      preparedStatement = connection.prepareStatement("INSERT INTO highscore (player, highscore) VALUES ('"
                           + player + "', " 
                           + score + ");");
       System.out.println(preparedStatement.toString());
@@ -101,15 +101,21 @@ public class HighScoreService
   
   public static void main(String[] args) throws SQLException
   {
-    HighScoreService highScore = new HighScoreService("jdbc:mysql://localhost:3306/spurgux", "root", "root");
-    highScore.addHighScore("jorma", 2);
-    highScore.addHighScore("aku", 1);
-    highScore.addHighScore("kalle", 4);
-    highScore.addHighScore("jallu", 10);
-    HighScoreEntry[] hse = highScore.getHighScoreEntries(10);
-    for (int i = 0; i < hse.length; i++)
+    HighScoreService highScore = new HighScoreService("jdbc:mysql://localhost:3306/highscore", "root", "root");
+    long j = 100000;
+    long t1 = System.currentTimeMillis();
+    for (int i = 0; i < j; i++)
     {
-      System.out.println(hse[i]);
+      highScore.addHighScore("jorma", 2);
+      highScore.addHighScore("aku", 1);
+      highScore.addHighScore("kalle", 4);
+      highScore.addHighScore("jallu", 10);
+      if (i % 100000 == 0) 
+      {
+        System.out.println(".");
+      }
     }
+    long t2 = System.currentTimeMillis();
+    System.out.println((j * 4) / (t2 - t1));
   }
 }

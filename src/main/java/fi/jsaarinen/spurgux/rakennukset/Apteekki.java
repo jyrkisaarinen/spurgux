@@ -18,11 +18,11 @@ public class Apteekki
   {
     if (player.getEthanolLevel() >= 1.5)
     {
-      canvas.renderFeedbackLine("Pameja ei voi vetää viinan kanssa sekaisin!");
+      canvas.renderStatusLine("Pameja ei voi vetää viinan kanssa sekaisin!");
     }
     else
     {        
-      canvas.renderFeedbackLine("Diatsepaami parantaa oloasi.");
+      canvas.renderStatusLine("Diatsepaami parantaa oloasi.");
       player.setWellBeing(player.getWellBeing() + 2);
     }
   }

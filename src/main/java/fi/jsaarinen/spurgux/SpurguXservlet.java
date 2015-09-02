@@ -55,7 +55,7 @@ public class SpurguXservlet extends HttpServlet
       {
         httpSession = req.getSession(true);
         Canvas canvas = new Canvas(60, 40, 16);
-        Player player = new Player(1.0, 10, 0, 10, 20);
+        Player player = new Player(1.0, 10, 0, 10, 10);
         context = new Context(canvas, player);
         httpSession.setAttribute("CONTEXT", context);
       }
@@ -63,9 +63,12 @@ public class SpurguXservlet extends HttpServlet
       Canvas canvas = context.getCanvas();
       Player player = context.getPlayer();
       int keyCode = Integer.parseInt(req.getParameter("key"));
-      player.step(keyCode);
-      canvas.render(player.getFigure(), player.getX(), player.getY());
-      canvas.renderFeedbackLine("testi jee " + keyCode);
+      if (player.canBeSteppedOver(player.getX(), player.getY()))
+      {
+        player.step(keyCode, canvas);
+      }
+      player.render(canvas);
+      canvas.renderStatusLine("testi jee " + keyCode);
       Alko alko = new Alko();
       alko.setX(10);
       alko.setY(10);

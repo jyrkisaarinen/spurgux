@@ -3,7 +3,7 @@ package fi.jsaarinen.spurgux.rakennukset;
 import fi.jsaarinen.spurgux.Canvas;
 import fi.jsaarinen.spurgux.Player;
 
-public class Alko extends AbstractRakennus implements Rakennus
+public class Alko extends AbstractRakennus
 {
   private String[] map =
   {
@@ -21,13 +21,13 @@ public class Alko extends AbstractRakennus implements Rakennus
   {
     if (player.getEthanolLevel() >= 1.5)
     {
-      canvas.renderFeedbackLine("Emme myy päihtyneille.");
+      canvas.renderStatusLine("Emme myy päihtyneille.");
     }
     else
     {
       if (player.getMoney() >= LONKERO_PRICE)
       {
-        canvas.renderFeedbackLine("Ostit lonkeron");
+        canvas.renderStatusLine("Ostit lonkeron");
         player.setEthanolLevel(player.getEthanolLevel() + 0.5);
         double money = player.getMoney();
         money -= LONKERO_PRICE;
@@ -36,7 +36,7 @@ public class Alko extends AbstractRakennus implements Rakennus
       else
       if (player.getMoney() >= BEER_PRICE)
       {
-        canvas.renderFeedbackLine("Ostit oluen");
+        canvas.renderStatusLine("Ostit oluen");
         player.setEthanolLevel(player.getEthanolLevel() + 0.4);
         double money = player.getMoney();
         money -= BEER_PRICE;
@@ -44,7 +44,7 @@ public class Alko extends AbstractRakennus implements Rakennus
       }
       else
       {
-        canvas.renderFeedbackLine("Sinulla ei ole fyrkkaa virvokkeisiin.");
+        canvas.renderStatusLine("Sinulla ei ole fyrkkaa virvokkeisiin.");
       }
     }
   }
@@ -52,5 +52,5 @@ public class Alko extends AbstractRakennus implements Rakennus
   public String[] getMap()
   {
     return this.map;
-  }
+  } 
 }
