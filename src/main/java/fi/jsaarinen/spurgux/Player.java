@@ -141,6 +141,9 @@ public class Player extends Hahmo
     throw new IllegalStateException("Player can't step over him/herself");
   }
 
+  /**
+   * Chain of responsibility pattern.
+   */
   @Override
   public void render(Canvas canvas)
   {
