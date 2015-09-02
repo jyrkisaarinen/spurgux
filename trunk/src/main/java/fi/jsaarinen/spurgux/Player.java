@@ -13,7 +13,7 @@ public class Player extends Hahmo
   
   public Player(double ethanolLevel, double money, int points, int xpos, int ypos)
   {
-    super(xpos, ypos);
+    super(xpos, ypos, '@');
     this.ethanolLevel = ethanolLevel;
     this.money = money;
     this.points = points;
@@ -70,7 +70,7 @@ public class Player extends Hahmo
     this.onTrip = onTrip;
   }
 
-  public void visit(Canvas canvas, Player player)
+  public void visit(Player player, Canvas canvas)
   {   
     throw new IllegalArgumentException("Player can't visit itself!");
   }
@@ -80,45 +80,47 @@ public class Player extends Hahmo
     return '@';
   }
 
-  public void step(int keyCode)
+  public void step(int keyCode, Canvas canvas)
   {
-    switch ((char)keyCode)
+    int x = this.getX();
+    int y = this.getY();
+    switch (keyCode)
     {
-      case '1':
+      case 1:
         x--;
         y++;
         break;
         
-      case '2':
+      case 2:
         y++;
         break;
         
-      case '3':
+      case 3:
         x++;
         y++;
         break;
         
-      case '4':      
+      case 4:      
         x--;
         break;
         
-      case '5':
+      case 5:
         break;
         
-      case '6':
+      case 6:
         x++;
         break;
         
-      case '7':
+      case 7:
         x--;
         y--;
         break;
         
-      case '8':
+      case 8:
         y--;
         break;
         
-      case '9':
+      case 9:
         x++;
         y++;
         break;
@@ -126,5 +128,22 @@ public class Player extends Hahmo
       default:
         break;
     }
-  }  
+    if (canvas.canBeSteppedOver(x, y))
+    {
+      this.setX(x);
+      this.setY(y);
+    }
+  }
+
+  @Override
+  public boolean canBeSteppedOver(int x, int y)
+  {
+    throw new IllegalStateException("Player can't step over him/herself");
+  }
+
+  @Override
+  public void render(Canvas canvas)
+  {
+    canvas.render(this.getFigure(), this.getX(), this.getY());
+  }
 }

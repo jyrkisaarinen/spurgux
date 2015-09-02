@@ -1,17 +1,21 @@
 package fi.jsaarinen.spurgux.hahmot;
 
-public abstract class Hahmo
-{
-  protected int x, y;
-  //public abstract void visit(Canvas canvas, Player player);
-  //public abstract char getFigure();
-  //public abstract boolean canBeSteppedOver();
+import fi.jsaarinen.spurgux.Canvas;
+import fi.jsaarinen.spurgux.Renderable;
+import fi.jsaarinen.spurgux.Steppable;
+import fi.jsaarinen.spurgux.Visitable;
 
-  public Hahmo(int x, int y)
+public abstract class Hahmo implements Renderable, Steppable, Visitable
+{
+  private int x, y;
+  private char figure;
+
+  public Hahmo(int x, int y, char figure)
   {
     super();
     this.x = x;
     this.y = y;
+    this.figure = figure;
   }
   
   public int getX()
@@ -33,4 +37,15 @@ public abstract class Hahmo
   {
     this.y = y;
   }
+
+  public char getFigure()
+  {
+    return this.figure;
+  }
+
+  @Override
+  public void render(Canvas canvas)
+  {  
+    canvas.render(figure, x, y);
+  }  
 }

@@ -7,16 +7,17 @@ public class Kake extends Hahmo
 {
   public Kake(int x, int y)
   {
-    super(x, y);
+    super(x, y, 'K');
   }
 
-  public void visit(Canvas canvas, Player player)
+  public void visit(Player player, Canvas canvas)
   {
-    canvas.renderFeedbackLine("Kake pummaa kaljaa!");
+    canvas.renderStatusLine("Kake pummaa kaljaa!");
   }
 
-  public char getFigure()
+  @Override
+  public boolean canBeSteppedOver(int x, int y)
   {
-    return 'K';
-  } 
+    return false;
+  }
 }

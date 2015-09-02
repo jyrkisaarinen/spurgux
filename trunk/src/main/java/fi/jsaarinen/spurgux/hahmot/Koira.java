@@ -7,16 +7,18 @@ public class Koira extends Hahmo
 {
   public Koira(int x, int y)
   {
-    super(x, y);
+    super(x, y, 'D');
   }
 
-  public void visit(Canvas canvas, Player player)
+  public void visit(Player player, Canvas canvas)
   {
-    canvas.renderFeedbackLine("Potkaiset koiraa.");
+    canvas.renderStatusLine("Potkaiset koiraa, koira uinahtaa");
+    canvas.removeCharacter(this);
   }
 
-  public char getFigure()
+  @Override
+  public boolean canBeSteppedOver(int x, int y)
   {
-    return 'D';
-  }  
+    return true;
+  }
 }
