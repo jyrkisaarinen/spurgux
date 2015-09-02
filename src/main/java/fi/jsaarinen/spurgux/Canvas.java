@@ -119,7 +119,7 @@ public class Canvas implements Steppable
   {
     for (AbstractRakennus r : this.buildings)
     {
-      if (r.canBeSteppedOver(null, x, y))
+      if (r.canBeSteppedOver(player, x, y))
       {
         r.visit(player, this);
         return true;
@@ -127,7 +127,7 @@ public class Canvas implements Steppable
     }
     for (Hahmo h : this.characters)
     {
-      if (h.canBeSteppedOver(null, x, y))
+      if (h.canBeSteppedOver(player, x, y))
       {
         h.visit(player, this);
         return true;
@@ -135,7 +135,7 @@ public class Canvas implements Steppable
     }
     for (Esine e : this.items)
     {
-      if (e.canBeSteppedOver(null, x, y))
+      if (e.canBeSteppedOver(player, x, y))
       {
         e.visit(player, this);
         return true;
