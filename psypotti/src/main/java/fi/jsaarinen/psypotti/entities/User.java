@@ -12,7 +12,8 @@ import fi.jsaarinen.psypotti.db.Util;
 public class User
 {  
   @Id
-  private String SOTU;
+  @Column(name = "HETU", length=11)
+  private String HETU;
 
   @Column(name = "Username")
   private String username;
@@ -37,10 +38,10 @@ public class User
     super();
   }
 
-  public User(String SOTU, String username, String name, String title, String password, int role)
+  public User(String HETU, String username, String name, String title, String password, int role)
   {
     super();
-    this.SOTU = SOTU;
+    this.HETU = HETU;
     this.username = username;
     this.name = name;
     this.title  = title;
@@ -53,7 +54,7 @@ public class User
   {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this.SOTU == null) ? 0 : this.SOTU.hashCode());
+    result = prime * result + ((this.HETU == null) ? 0 : this.HETU.hashCode());
     result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
     result = prime * result + ((this.password == null) ? 0 : this.password.hashCode());
     result = prime * result + this.role;
@@ -72,11 +73,11 @@ public class User
     if (getClass() != obj.getClass())
       return false;
     User other = (User) obj;
-    if (this.SOTU == null)
+    if (this.HETU == null)
     {
-      if (other.SOTU != null)
+      if (other.HETU != null)
         return false;
-    } else if (!this.SOTU.equals(other.SOTU))
+    } else if (!this.HETU.equals(other.HETU))
       return false;
     if (this.name == null)
     {
@@ -127,14 +128,14 @@ public class User
     this.title = title;
   }
 
-  public String getSOTU()
+  public String getHETU()
   {
-    return this.SOTU;
+    return this.HETU;
   }
   
-  public void setSOTU(String sOTU)
+  public void setSOTU(String HETU)
   {
-    this.SOTU = sOTU;
+    this.HETU = HETU;
   }
   
   public String getUsername()
@@ -166,6 +167,4 @@ public class User
   {
     this.role = role;
   }
-  
-  
 }

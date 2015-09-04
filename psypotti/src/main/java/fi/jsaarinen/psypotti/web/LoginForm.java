@@ -10,6 +10,11 @@ import org.apache.wicket.model.Model;
 
 public class LoginForm extends Form 
 {
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+  
   private TextField<String> usernameField;
   private PasswordTextField passwordField;
   private Label loginStatus;
