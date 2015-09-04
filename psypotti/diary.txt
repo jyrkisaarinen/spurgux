@@ -1,1 +1,1 @@
-3.9.2015 - tietokantakerros aloitettu
+3.9.2015 - tietokantakerros aloitettu, Image, Patient ja User -luokat tehty

@@ -5,15 +5,15 @@
 <web-app>
     <display-name>Psypotti</display-name>
     <filter>
-        <filter-name>LoginApplication</filter-name>
+        <filter-name>PsypottiApplication</filter-name>
         <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
         <init-param>
           <param-name>applicationClassName</param-name>
-          <param-value>fi.jsaarinen.psypotti.web.LoginApplication</param-value>
+          <param-value>fi.jsaarinen.psypotti.web.PsypottiApplication</param-value>
         </init-param>
     </filter>
     <filter-mapping>
-        <filter-name>LoginApplication</filter-name>
+        <filter-name>PsypottiApplication</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>

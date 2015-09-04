@@ -3,9 +3,9 @@ package fi.jsaarinen.psypotti.web;
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 
-public class LoginApplication extends WebApplication
+public class PsypottiApplication extends WebApplication
 {
-  public LoginApplication()
+  public PsypottiApplication()
   {
     super();
   }

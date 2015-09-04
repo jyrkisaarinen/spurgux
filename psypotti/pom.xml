@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>jsaarinen</groupId>
-	<artifactId>proto</artifactId>
+	<artifactId>psypotti</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>proto</name>
+	<name>psypotti</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -58,5 +58,13 @@
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>5.0.0.Final</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 </project>

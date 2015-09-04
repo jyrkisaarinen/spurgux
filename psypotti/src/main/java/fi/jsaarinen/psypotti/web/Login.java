@@ -3,6 +3,8 @@ package fi.jsaarinen.psypotti.web;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.TextField;
 
 public class Login<T> extends WebPage
 {
@@ -13,7 +15,8 @@ public class Login<T> extends WebPage
 
   public Login()
   {
-    Form<T> form = new Form<T>("login-form");
-    this.add(new Label("label", "testi"));
+    this.add(new Label("login", "Sisäänkirjautuminen"));
+//    LoginForm form = new LoginForm("loginForm");
+//    this.add(form);
   }
 }
