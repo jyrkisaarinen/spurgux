@@ -30,5 +30,6 @@ public class eReseptiServiceImpl implements eReseptiService
   public void sendPrescription(Prescription prescription) throws IOException
   {    
     this.outputStream.write(prescription.toString().getBytes("UTF-8"));
+    this.outputStream.flush();
   }
 }
