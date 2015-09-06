@@ -23,9 +23,9 @@ public class DatabaseManager implements DatabaseOperations
     this.entityManager = Persistence.createEntityManagerFactory("psypotti").createEntityManager();
   }
 
-  public User loadUser(String SOTU)
+  public User loadUser(String HETU)
   {
-    User user = this.entityManager.find(User.class, SOTU);
+    User user = this.entityManager.find(User.class, HETU);
     return user;
   }
 
@@ -40,9 +40,9 @@ public class DatabaseManager implements DatabaseOperations
  
   }
 
-  public Patient loadPatient(String SOTU)
+  public Patient loadPatient(String HETU)
   {
-    Patient patient = this.entityManager.find(Patient.class, SOTU);
+    Patient patient = this.entityManager.find(Patient.class, HETU);
     return patient;
   }
 
