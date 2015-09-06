@@ -11,23 +11,23 @@ import fi.jsaarinen.psypotti.db.Util;
 @Table(name = "USERS")
 public class User
 {  
-  @Id
-  @Column(name = "HETU", length=11)
+  @Column(name = "HETU", length=11, nullable=false)
   private String HETU;
 
-  @Column(name = "Username")
+  @Id
+  @Column(name = "Username", length=32, nullable=false)
   private String username;
   
-  @Column(name = "Name")
+  @Column(name = "Name", length=64, nullable=false)
   private String name;
   
-  @Column(name = "PasswordSHA1Base64")
+  @Column(name = "PasswordSHA1Base64", length=64, nullable=false)
   private String password;
 
-  @Column(name = "Role")
+  @Column(name = "Role", nullable=false)
   private int role;
   
-  @Column(name = "Title")
+  @Column(name = "Title", length=32, nullable=false)
   private String title;
   
   public static final int ROLE_DOCTOR = 1;
