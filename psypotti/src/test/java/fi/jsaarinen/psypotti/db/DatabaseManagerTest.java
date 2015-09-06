@@ -22,9 +22,9 @@ public class DatabaseManagerTest extends TestCase
   
   public void testUserLoadAndSave()
   {
-    String sotu = "123456-7890";
+    String hetu = "123456-7890";
     String password = "kukka";
-    User user = new User(sotu, "jsaarinen", "Jyrki Saarinen", "Tri", password, User.ROLE_NURSE);
+    User user = new User(hetu, "jsaarinen", "Jyrki Saarinen", "Tri", password, User.ROLE_NURSE);
     this.databaseOperations.saveUser(user);
     User another = this.databaseOperations.loadUser("jsaarinen");
     String base64password = Util.getSHA1PasswordBase64(password);
@@ -35,10 +35,10 @@ public class DatabaseManagerTest extends TestCase
   
   public void testPatientLoadAndSave()
   {
-    String sotu = "123456-7890";
-    Patient patient = new Patient(sotu, "Jyrki Saarinen", "0501234567", "Valimotie 2", "00580", "Suomi"); 
+    String hetu = "123456-7890";
+    Patient patient = new Patient(hetu, "Jyrki Saarinen", "0501234567", "Valimotie 2", "00580", "Suomi"); 
     this.databaseOperations.savePatient(patient);
-    Patient another = this.databaseOperations.loadPatient(sotu);
+    Patient another = this.databaseOperations.loadPatient(hetu);
     System.out.println(another);
    }
 }
