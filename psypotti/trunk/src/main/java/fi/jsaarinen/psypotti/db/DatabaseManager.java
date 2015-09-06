@@ -1,0 +1,74 @@
+package fi.jsaarinen.psypotti.db;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+
+import fi.jsaarinen.psypotti.entities.Image;
+import fi.jsaarinen.psypotti.entities.Patient;
+import fi.jsaarinen.psypotti.entities.User;
+
+public class DatabaseManager implements DatabaseOperations
+{
+  private EntityManager entityManager;
+  
+  private final static DatabaseOperations SINGLETON = new DatabaseManager();
+  
+  public static DatabaseOperations getInstance()
+  {
+    return SINGLETON;
+  }
+  
+  private DatabaseManager()
+  {
+    this.entityManager = Persistence.createEntityManagerFactory("psypotti").createEntityManager();
+  }
+
+  public User loadUser(String HETU)
+  {
+    User user = this.entityManager.find(User.class, HETU);
+    return user;
+  }
+
+  public void saveUser(User user)
+  {
+    this.entityManager.persist(user);   
+  } 
+
+  public void deleteUser(User user)
+  {
+    this.entityManager.remove(user);
+ 
+  }
+
+  public Patient loadPatient(String HETU)
+  {
+    Patient patient = this.entityManager.find(Patient.class, HETU);
+    return patient;
+  }
+
+  public void savePatient(Patient patient)
+  {
+    this.entityManager.persist(patient);   
+  }
+
+  public void deletePatient(Patient patient)
+  {
+    this.entityManager.remove(patient); 
+  } 
+  
+  public Image loadImage(long id)
+  {
+    Image image = this.entityManager.find(Image.class, id);
+    return image;
+  }
+
+  public void saveImage(Image image)
+  {
+    this.entityManager.persist(image);   
+  }
+
+  public void deleteImage(Image image)
+  {
+    this.entityManager.remove(image);      
+  } 
+}
