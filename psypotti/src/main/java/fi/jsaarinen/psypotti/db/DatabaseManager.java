@@ -11,9 +11,9 @@ public class DatabaseManager implements DatabaseOperations
 {
   private EntityManager entityManager;
   
-  private final static DatabaseManager SINGLETON = new DatabaseManager();
+  private final static DatabaseOperations SINGLETON = new DatabaseManager();
   
-  public static DatabaseManager getInstance()
+  public static DatabaseOperations getInstance()
   {
     return SINGLETON;
   }
