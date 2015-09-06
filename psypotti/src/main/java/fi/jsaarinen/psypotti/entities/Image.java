@@ -1,5 +1,6 @@
 package fi.jsaarinen.psypotti.entities;
 
+import java.sql.Date;
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -18,24 +19,29 @@ public class Image
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   
-  @Column(name = "Image")
+  @Column(name = "Image", nullable=false)
   private byte[] image;
   
-  @Column(name = "ImageType")
+  @Column(name = "ImageType", nullable=false)
   private int imageType;
+  
+  @Column(name="Date", nullable=false)
+  private Date date;
 
-  @Column(name = "ImageMIMEType")
+  @Column(name = "ImageMIMEType", length=20, nullable=false)
   private String imageMimeType;
   
-  @Column(name = "Statement")
+  @Column(name = "Statement", length=2000, nullable=false)
   private String statement;
   
-  @Column(name = "PatientHETU")
+  @Column(name = "PatientHETU", length=11, nullable=false)
   private String patientHETU;
 
   public static final int TYPE_CT = 1;
   public static final int TYPE_MRI = 2;
   public static final int TYPE_RÖNTGEN = 3;
+  public static final int TYPE_ULTRASOUND = 4;
+  
   
   public Image(long id, byte[] image, int imageType, String imageMimeType, String statement, String patientHETU)
   {

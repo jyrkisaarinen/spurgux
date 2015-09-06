@@ -35,10 +35,10 @@ public class DatabaseManagerTest extends TestCase
   
   public void testPatientLoadAndSave()
   {
-    String hetu = "123456-7890";
-    Patient patient = new Patient(hetu, "Jyrki Saarinen", "0501234567", "Valimotie 2", "00580", "Suomi"); 
+    String sotu = "123456-7890";
+    Patient patient = new Patient(sotu, "Jyrki Saarinen", "0501234567", "Valimotie 2", "00580", "Suomi"); 
     this.databaseOperations.savePatient(patient);
-    Patient another = this.databaseOperations.loadPatient(hetu);
+    Patient another = this.databaseOperations.loadPatient(sotu);
     System.out.println(another);
    }
 }
