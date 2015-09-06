@@ -12,20 +12,20 @@ public class Patient
   @Id
   @Column(name = "HETU", length=11, nullable=false)
   private String HETU;
- 
-  @Column(name = "Name")
+  
+  @Column(name = "Name", length=64, nullable=false)
   private String name;
   
-  @Column(name = "Phone")
+  @Column(name = "Phone", length=20, nullable=true)
   private String phone;
   
-  @Column(name = "Address")
+  @Column(name = "Address", length=64, nullable=false)
   private String address;
   
-  @Column(name = "ZipCode")
+  @Column(name = "ZipCode", length=20, nullable=false)
   private String zipCode;
   
-  @Column(name = "Country")
+  @Column(name = "Country", length=20, nullable=false)
   private String country;
 
   public Patient(String HETU, String name, String phone, String address, String zipCode, String country)

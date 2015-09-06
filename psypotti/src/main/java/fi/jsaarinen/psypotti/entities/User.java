@@ -133,7 +133,7 @@ public class User
     return this.HETU;
   }
   
-  public void setSOTU(String HETU)
+  public void setHETU(String HETU)
   {
     this.HETU = HETU;
   }

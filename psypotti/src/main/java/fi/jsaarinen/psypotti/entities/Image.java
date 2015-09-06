@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,19 +25,19 @@ public class Image
   private int imageType;
 
   @Column(name = "ImageMIMEType")
-  private int imageMimeType;
+  private String imageMimeType;
   
   @Column(name = "Statement")
   private String statement;
   
-  @Column(name = "PatientSOTU")
-  private String patientSOTU;
+  @Column(name = "PatientHETU")
+  private String patientHETU;
 
   public static final int TYPE_CT = 1;
   public static final int TYPE_MRI = 2;
   public static final int TYPE_RÖNTGEN = 3;
   
-  public Image(long id, byte[] image, int imageType, int imageMimeType, String statement, String patientSOTU)
+  public Image(long id, byte[] image, int imageType, String imageMimeType, String statement, String patientHETU)
   {
     super();
     this.id = id;
@@ -44,7 +45,7 @@ public class Image
     this.imageType = imageType;
     this.imageMimeType = imageMimeType;
     this.statement = statement;
-    this.patientSOTU = patientSOTU;
+    this.patientHETU = patientHETU;
   }
   
   public Image()
@@ -58,9 +59,9 @@ public class Image
     int result = 1;
     result = prime * result + (int) (this.id ^ (this.id >>> 32));
     result = prime * result + Arrays.hashCode(this.image);
-    result = prime * result + this.imageMimeType;
+    result = prime * result + ((this.imageMimeType == null) ? 0 : this.imageMimeType.hashCode());
     result = prime * result + this.imageType;
-    result = prime * result + ((this.patientSOTU == null) ? 0 : this.patientSOTU.hashCode());
+    result = prime * result + ((this.patientHETU == null) ? 0 : this.patientHETU.hashCode());
     result = prime * result + ((this.statement == null) ? 0 : this.statement.hashCode());
     return result;
   }
@@ -79,15 +80,19 @@ public class Image
       return false;
     if (!Arrays.equals(this.image, other.image))
       return false;
-    if (this.imageMimeType != other.imageMimeType)
+    if (this.imageMimeType == null)
+    {
+      if (other.imageMimeType != null)
+        return false;
+    } else if (!this.imageMimeType.equals(other.imageMimeType))
       return false;
     if (this.imageType != other.imageType)
       return false;
-    if (this.patientSOTU == null)
+    if (this.patientHETU == null)
     {
-      if (other.patientSOTU != null)
+      if (other.patientHETU != null)
         return false;
-    } else if (!this.patientSOTU.equals(other.patientSOTU))
+    } else if (!this.patientHETU.equals(other.patientHETU))
       return false;
     if (this.statement == null)
     {
@@ -128,12 +133,12 @@ public class Image
     this.imageType = imageType;
   }
 
-  public int getImageMimeType()
+  public String getImageMimeType()
   {
     return this.imageMimeType;
   }
 
-  public void setImageMimeType(int imageMimeType)
+  public void setImageMimeType(String imageMimeType)
   {
     this.imageMimeType = imageMimeType;
   }
@@ -148,13 +153,13 @@ public class Image
     this.statement = statement;
   }
 
-  public String getPatientSOTU()
+  public String getPatientHETU()
   {
-    return this.patientSOTU;
+    return this.patientHETU;
   }
 
-  public void setPatientSOTU(String patientSOTU)
+  public void setPatientHETU(String patientHETU)
   {
-    this.patientSOTU = patientSOTU;
+    this.patientHETU = patientHETU;
   }
 }
