@@ -10,7 +10,8 @@ import javax.persistence.Table;
 public class Patient
 {
   @Id
-  private String SOTU;
+  @Column(name = "HETU", length=11, nullable=false)
+  private String HETU;
  
   @Column(name = "Name")
   private String name;
@@ -27,10 +28,10 @@ public class Patient
   @Column(name = "Country")
   private String country;
 
-  public Patient(String SOTU, String name, String phone, String address, String zipCode, String country)
+  public Patient(String HETU, String name, String phone, String address, String zipCode, String country)
   {
     super();
-    this.SOTU = SOTU;
+    this.HETU = HETU;
     this.name = name;
     this.phone = phone;
     this.address = address;
@@ -44,12 +45,12 @@ public class Patient
 
   public String getSOTU()
   {
-    return this.SOTU;
+    return this.HETU;
   }
 
   public void setSOTU(String sOTU)
   {
-    this.SOTU = sOTU;
+    this.HETU = sOTU;
   }
 
   public String getName()
