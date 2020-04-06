@@ -2,13 +2,13 @@ package fi.jsaarinen.spurgux;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
+import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 
 public class HighScoreService
 {
