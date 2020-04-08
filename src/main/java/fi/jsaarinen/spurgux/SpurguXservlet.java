@@ -6,17 +6,26 @@ import java.io.OutputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.support.XmlWebApplicationContext;
+
 import fi.jsaarinen.spurgux.rakennukset.Alko;
 
+@WebServlet(urlPatterns = "/spurgux")
 @SuppressWarnings("serial")
 public class SpurguXservlet extends HttpServlet
 {
-  private static byte[] header, footer;
+  private byte[] header, footer;
+
+  public SpurguXservlet(XmlWebApplicationContext appContext)
+  {
+  }
 
   @Override
   public void init() throws ServletException
@@ -90,10 +99,4 @@ public class SpurguXservlet extends HttpServlet
       outputStream.close();
     }
   }
-
-  @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException
-  {
-  }  
 }

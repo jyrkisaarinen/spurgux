@@ -2,15 +2,34 @@ package fi.jsaarinen.spurgux;
 
 import java.util.Arrays;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRegistration;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.context.support.XmlWebApplicationContext;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class Application
+public class Application implements WebApplicationInitializer
 {
+  @Override
+  public void onStartup(ServletContext container)
+  {
+    AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+    ctx.register(WebMvcConfigurer.class);
+    ctx.setServletContext(container);
+    XmlWebApplicationContext appContext = new XmlWebApplicationContext();
+
+    ServletRegistration.Dynamic registration = container.addServlet("spurgux", new SpurguXservlet(appContext));
+    registration.setLoadOnStartup(1);
+    registration.addMapping("/spurgux");
+  }
 
   public static void main(String[] args)
   {
@@ -30,13 +49,8 @@ public class Application
         System.out.println(beanName);
       }
 
-    };
+    }
+    ;
     return null;
   }
-
-}
-
-public class Application
-{
-
 }
